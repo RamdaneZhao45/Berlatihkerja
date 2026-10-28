@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>BerlatihKerja — Latihan Tes Kerja Dasar</title>
+    <style>
+        :root {
+            --bg: #f3f7f8;
+            --card: #fff;
+            --tx: #1f2d33;
+            --mu: #64767f;
+            --tl: #0f9d9a;
+            --tl2: #0b7f86;
+            --ok: #15803d;
+            --okb: #dcfce7;
+            --er: #b91c1c;
+            --erb: #fee2e2;
+            --ln: #e2eaed;
+            --soft: #e8f5f4;
+            color-scheme: light;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0f1a1e;
+                --card: #18262c;
+                --tx: #e8f0f2;
+                --mu: #93a6af;
+                --tl: #2cc7c2;
+                --tl2: #1fa7a8;
+                --ok: #4ade80;
+                --okb: #12341f;
+                --er: #f87171;
+                --erb: #3b1818;
+                --ln: #26373e;
+                --soft: #14302f;
+                color-scheme: dark
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0f1a1e;
+            --card: #18262c;
+            --tx: #e8f0f2;
+            --mu: #93a6af;
+            --tl: #2cc7c2;
+            --tl2: #1fa7a8;
+            --ok: #4ade80;
+            --okb: #12341f;
+            --er: #f87171;
+            --erb: #3b1818;
+            --ln: #26373e;
+            --soft: #14302f;
+            color-scheme: dark
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--tx);
+            font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
+        }
+
+        .w {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 16px
+        }
+
+        .top {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 5;
+            background: var(--card);
+            border-bottom: 1px solid var(--ln)
+        }
+
+        .top .w {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px
+        }
+
+        .brand {
+            font-weight: 800;
+            color: var(--tl);
+            font-size: 1.15rem;
+            cursor: pointer;
+            border: 0;
+            background: none;
+            padding: 0
+        }
+
+        nav button {
+            border: 0;
+            background: none;
+            color: var(--mu);
+            font: inherit;
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 10px
+        }
+
+        nav button:hover {
+            color: var(--tl)
+        }
+
+        .hero {
+            background: linear-gradient(160deg, #3b82f6 0%, #10b0a8 60%, #a9e8c8 100%);
+            color: #fff;
+            padding: 36px 0 56px
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 1.8rem;
+            line-height: 1.2
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 520px;
+            opacity: .95
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 2px 12px rgba(15, 60, 70, .08)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 14px
+        }
+
+        .pull {
+            margin-top: -34px
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin: 28px 0 12px
+        }
+
+        .ic {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: var(--soft);
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            margin-bottom: 8px
+        }
+
+        .t h3 {
+            margin: 0 0 4px
+        }
+
+        .t p {
+            margin: 0 0 12px;
+            color: var(--mu);
+            font-size: .93rem
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--soft);
+            color: var(--tl2);
+            font-size: .78rem;
+            padding: 2px 10px;
+            border-radius: 99px;
+            margin-right: 4px
+        }
+
+        .btn {
+            border: 0;
+            background: var(--tl2);
+            color: #fff;
+            font: inherit;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            min-height: 46px
+        }
+
+        .btn:hover {
+            filter: brightness(1.08)
+        }
+
+        .btn.g {
+            background: var(--soft);
+            color: var(--tl2)
+        }
+
+        .btn:disabled {
+            opacity: .45;
+            cursor: not-allowed
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .row>.btn {
+            flex: 1
+        }
+
+        .hid {
+            display: none !important
+        }
+
+        .mu {
+            color: var(--mu)
+        }
+
+        .bar {
+            height: 8px;
+            background: var(--ln);
+            border-radius: 9px;
+            overflow: hidden
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            background: var(--tl);
+            transition: width .25s
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin: 10px 0
+        }
+
+        .dots button {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            border: 1px solid var(--ln);
+            background: var(--card);
+            color: var(--tx);
+            font: inherit;
+            font-size: .8rem;
+            cursor: pointer
+        }
+
+        .dots .d {
+            background: var(--soft);
+            border-color: var(--tl)
+        }
+
+        .dots .c {
+            outline: 2px solid var(--tl2)
+        }
+
+        .opt {
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin: 8px 0;
+            padding: 13px 14px;
+            border: 2px solid var(--ln);
+            border-radius: 14px;
+            background: var(--card);
+            color: var(--tx);
+            font: inherit;
+            cursor: pointer
+        }
+
+        .opt.s {
+            border-color: var(--tl);
+            background: var(--soft)
+        }
+
+        .plate {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+            width: 300px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #f4efe6
+        }
+
+        input.num {
+            width: 100%;
+            font: inherit;
+            font-size: 1.4rem;
+            text-align: center;
+            padding: 12px;
+            border: 2px solid var(--ln);
+            border-radius: 14px;
+            background: var(--card);
+            color: var(--tx)
+        }
+
+        .ring {
+            display: block;
+            margin: 6px auto
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 14px 0
+        }
+
+        .stat {
+            background: var(--bg);
+            border-radius: 14px;
+            padding: 10px;
+            text-align: center
+        }
+
+        .stat b {
+            display: block;
+            font-size: 1.4rem
+        }
+
+        .ok {
+            color: var(--ok)
+        }
+
+        .er {
+            color: var(--er)
+        }
+
+        .rv {
+            border-top: 1px solid var(--ln);
+            padding: 10px 0;
+            font-size: .95rem
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 1px 9px;
+            border-radius: 99px;
+            font-size: .8rem;
+            font-weight: 600
+        }
+
+        .pill.ok {
+            background: var(--okb)
+        }
+
+        .pill.er {
+            background: var(--erb)
+        }
+
+        .col {
+            height: 280px;
+            overflow: auto;
+            background: var(--bg);
+            border-radius: 14px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center
+        }
+
+        .col div {
+            font: 700 1.4rem/1.15 ui-monospace, monospace;
+            min-height: 28px;
+            min-width: 44px;
+            text-align: center
+        }
+
+        .col .s {
+            font-size: 1rem;
+            color: var(--mu)
+        }
+
+        .col .a {
+            background: var(--soft);
+            color: var(--tl2);
+            border-radius: 8px
+        }
+
+        .pad {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-top: 10px
+        }
+
+        .pad button {
+            min-height: 54px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 14px;
+            border: 1px solid var(--ln);
+            background: var(--card);
+            color: var(--tx);
+            cursor: pointer
+        }
+
+        .pad button:active {
+            background: var(--soft)
+        }
+
+        .clock {
+            font: 700 1.2rem ui-monospace, monospace;
+            color: var(--tl2)
+        }
+
+        .sg {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+            height: 110px;
+            margin: 10px 0
+        }
+
+        .sg div {
+            flex: 1;
+            background: var(--tl);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            min-height: 3px
+        }
+
+        .sg span {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: .8rem
+        }
+
+        select {
+            font: inherit;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--ln);
+            background: var(--card);
+            color: var(--tx)
+        }
+
+        footer {
+            padding: 24px 0 40px;
+            color: var(--mu);
+            font-size: .88rem;
+            text-align: center
+        }
+
+        .sup {
+            background: linear-gradient(135deg, var(--tl2), #3b82f6);
+            color: #fff
+        }
+
+        .sup .btn {
+            background: #fff;
+            color: var(--tl2)
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top">
+        <div class="w"><button class="brand" onclick="home()">◎ BerlatihKerja</button>
+            <nav><button onclick="home('#tes')">Tes</button><button onclick="home('#dukung')">Dukungan</button></nav>
+        </div>
+    </header>
+
+    <main id="v-home">
+        <section class="hero">
+            <div class="w">
+                <h1>Latihan Tes Kerja Dasar, Gratis</h1>
+                <p>Berlatih Pauli, Kraepelin, buta warna, deret angka, dan verbal dari HP atau laptop sebelum seleksi
+                    kerja.</p>
+            </div>
+        </section>
+        <div class="w pull">
+            <div class="grid" id="tes"></div>
+            <div class="card sup">
+                <h3 style="margin:0 0 6px">Dukung Pengembangan Website</h3>
+                <p style="margin:0 0 14px">Setiap dukungan membantu kami mengembangkan fitur baru dan meningkatkan
+                    kualitas layanan agar semakin bermanfaat bagi banyak orang.</p>
+                <button class="btn" id="dbtn">Berikan Dukungan</button>
+                <p id="dmsg" class="hid" style="margin:10px 0 0;font-size:.9rem">Tautan dukungan belum disiapkan oleh
+                    pemilik website. Semua tes tetap gratis untuk semua orang.</p>
+            </div>
+        </div>
+        <footer>© BerlatihKerja — hanya untuk latihan. Bukan diagnosis medis maupun prediksi kelulusan.</footer>
+    </main>
+
+    <main id="v-intro" class="w hid" style="padding-top:18px;padding-bottom:40px"></main>
+    <main id="v-test" class="w hid" style="padding-top:18px;padding-bottom:40px"></main>
+    <main id="v-res" class="w hid" style="padding-top:18px;padding-bottom:40px"></main>
+
+    <script>
+        const DONATE_URL = ""; // Isi dengan tautan pembayaran milik Anda, mis. "https://..."
+        const $ = s => document.querySelector(s);
+        const T = [
+            { id: 'warna', t: 'Tes Buta Warna', i: '🎨', n: 8, d: 'Baca angka dari pola titik berwarna.', how: 'Lihat pola titik, lalu ketik angka yang terlihat. Isi 0 bila tidak melihat angka. Pola dibuat khusus untuk latihan ini; hasilnya bukan diagnosis medis dan tidak menggantikan pemeriksaan tenaga kesehatan.' },
+            { id: 'deret', t: 'Deret Angka', i: '🔢', n: 8, d: 'Tentukan angka berikutnya dari sebuah pola.', how: 'Pilih satu jawaban untuk tiap deret. Kunci dan pembahasan tampil setelah tes selesai.' },
+            { id: 'verbal', t: 'Verbal Dasar', i: '📖', n: 8, d: 'Sinonim, antonim, analogi, dan bacaan.', how: 'Pilih satu jawaban paling tepat. Kunci dan pembahasan tampil setelah tes selesai.' },
+            { id: 'pauli', t: 'Tes Pauli', i: '➕', d: 'Jumlahkan angka berurutan dalam satu kolom.', how: 'Jumlahkan angka yang disorot dengan angka di bawahnya, lalu masukkan HANYA angka satuan hasilnya (7+8=15 → ketik 5). Kolom berganti otomatis saat selesai.' },
+            { id: 'kraep', t: 'Tes Kraepelin', i: '📊', d: 'Penjumlahan cepat dengan pindah kolom berkala.', how: 'Aturan hitung sama (ketik angka satuan), tetapi ada 4 bagian. Setiap waktu bagian habis, kolom pindah otomatis ke kolom baru walau belum selesai.' }];
+        const DERET = [
+            { q: '2, 4, 6, 8, …', o: [9, 10, 12, 14], a: 1, e: 'Ditambah 2 tiap langkah.' },
+            { q: '1, 2, 4, 8, 16, …', o: [24, 30, 32, 36], a: 2, e: 'Dikali 2 tiap langkah.' },
+            { q: '3, 6, 9, 12, …', o: [14, 15, 16, 18], a: 1, e: 'Ditambah 3 tiap langkah.' },
+            { q: '1, 4, 9, 16, 25, …', o: [30, 34, 36, 49], a: 2, e: 'Bilangan kuadrat: 6² = 36.' },
+            { q: '2, 3, 5, 8, 12, …', o: [15, 16, 17, 18], a: 2, e: 'Selisih naik 1,2,3,4 → berikutnya +5 = 17.' },
+            { q: '100, 90, 80, 70, …', o: [50, 60, 65, 75], a: 1, e: 'Dikurangi 10 tiap langkah.' },
+            { q: '1, 1, 2, 3, 5, 8, …', o: [11, 12, 13, 14], a: 2, e: 'Fibonacci: 5 + 8 = 13.' },
+            { q: '5, 10, 20, 40, …', o: [50, 60, 80, 100], a: 2, e: 'Dikali 2 tiap langkah.' }];
+        const BACA = 'Bacaan: Budi bangun pukul 05.00, mandi, sarapan, lalu berangkat ke sekolah naik sepeda karena jaraknya dekat. Ia tiba di sekolah pukul 06.30.';
+        const VERBAL = [
+            { q: 'Sinonim “cerdas” adalah …', o: ['Bodoh', 'Pintar', 'Malas', 'Lambat'], a: 1, e: 'Cerdas = pintar.' },
+            { q: 'Sinonim “gembira” adalah …', o: ['Sedih', 'Marah', 'Senang', 'Takut'], a: 2, e: 'Gembira = senang.' },
+            { q: 'Antonim “rajin” adalah …', o: ['Giat', 'Malas', 'Tekun', 'Cepat'], a: 1, e: 'Lawan rajin adalah malas.' },
+            { q: 'Antonim “tinggi” adalah …', o: ['Panjang', 'Besar', 'Rendah', 'Luas'], a: 2, e: 'Lawan tinggi adalah rendah.' },
+            { q: 'Dokter : Rumah Sakit = Guru : …', o: ['Buku', 'Sekolah', 'Murid', 'Papan'], a: 1, e: 'Tempat bekerja: dokter di rumah sakit, guru di sekolah.' },
+            { q: 'Panas : Dingin = Siang : …', o: ['Malam', 'Pagi', 'Sore', 'Terang'], a: 0, e: 'Pasangan berlawanan.' },
+            { q: BACA + '\n\nMengapa Budi naik sepeda?', o: ['Motornya rusak', 'Jarak ke sekolah dekat', 'Ia terlambat', 'Sepeda barunya'], a: 1, e: 'Disebutkan “karena jaraknya dekat”.' },
+            { q: BACA + '\n\nPukul berapa Budi tiba di sekolah?', o: ['05.00', '06.00', '06.30', '07.00'], a: 2, e: 'Disebutkan tiba pukul 06.30.' }];
+        const NUMS = ['12', '8', '29', '5', '74', '3', '6', '45'];
+        const WARNA = NUMS.map(n => ({ n }));
+        const cache = {};
+
+        function plate(i) {
+            if (cache[i]) return cache[i]; const n = NUMS[i], c = document.createElement('canvas'); c.width = c.height = 320;
+            const x = c.getContext('2d', { willReadFrequently: true }); x.fillStyle = '#000'; x.font = 'bold ' + (n.length > 1 ? 170 : 250) + 'px Arial,sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(n, 160, 170);
+            const d = x.getImageData(0, 0, 320, 320).data; x.clearRect(0, 0, 320, 320);
+            const A = ['#7ba84a', '#9cc05b', '#5f903d', '#b6d07b'], B = ['#e9a35c', '#da784b', '#f1c37c', '#c9613f'], P = [];
+            for (let k = 0; k < 7000 && P.length < 1200; k++) {
+                const r = 3.5 + Math.random() * 5.5, px = Math.random() * 320, py = Math.random() * 320;
+                if ((px - 160) ** 2 + (py - 160) ** 2 > (152 - r) ** 2) continue; if (P.some(p => (p[0] - px) ** 2 + (p[1] - py) ** 2 < (p[2] + r + 1) ** 2)) continue; P.push([px, py, r]);
+                const on = d[((py | 0) * 320 + (px | 0)) * 4 + 3] > 128, pal = on ? A : B; x.fillStyle = pal[Math.random() * 4 | 0]; x.beginPath(); x.arc(px, py, r, 0, 7); x.fill()
+            }
+            return cache[i] = c.toDataURL()
+        }
+
+        const meta = id => T.find(t => t.id == id);
+        function view(v) { ['home', 'intro', 'test', 'res'].forEach(k => $('#v-' + k).classList.toggle('hid', k != v)); scrollTo(0, 0) }
+        function home(h) { stopP(); view('home'); if (h) setTimeout(() => $(h).scrollIntoView({ behavior: 'smooth' }), 30) }
+        $('#tes').innerHTML = T.map(t => `<div class="card t"><div class="ic">${t.i}</div><h3>${t.t}</h3><p>${t.d}</p><span class="tag">${t.n ? t.n + ' soal' : 'Berwaktu'}</span><div class="row" style="margin-top:12px"><button class="btn" onclick="intro('${t.id}')">Lihat Petunjuk</button></div></div>`).join('');
+        $('#dbtn').onclick = () => { if (DONATE_URL) window.open(DONATE_URL, '_blank', 'noopener'); else $('#dmsg').classList.remove('hid') };
+
+        let S = null, P = null;
+        function intro(id) {
+            const t = meta(id); let opt = '';
+            if (id == 'pauli') opt = '<p><b>Durasi latihan</b></p><select id="dur"><option value="60">1 menit</option><option value="120" selected>2 menit</option><option value="180">3 menit</option></select>';
+            if (id == 'kraep') opt = '<p><b>Durasi tiap bagian (4 bagian)</b></p><select id="dur"><option value="15">15 detik</option><option value="30" selected>30 detik</option><option value="45">45 detik</option></select>';
+            $('#v-intro').innerHTML = `<div class="card"><div class="ic">${t.i}</div><h2 style="margin:0 0 8px">${t.t}</h2><p>${t.d}</p><h3>Petunjuk</h3><p>${t.how}</p>${t.n ? `<p class="mu">Jumlah soal: ${t.n}. Tanpa batas waktu.</p>` : ''}${opt}<div class="row" style="margin-top:16px"><button class="btn g" onclick="home()">Kembali ke Beranda</button><button class="btn" onclick="start('${id}')">Mulai Tes</button></div></div>`; view('intro')
+        }
+        function start(id) {
+            if (id == 'pauli' || id == 'kraep') return startP(id);
+            const items = id == 'warna' ? WARNA : id == 'deret' ? DERET : VERBAL; S = { id, items, ans: items.map(() => null), i: 0, t0: Date.now(), done: false }; view('test'); drawQ()
+        }
+
+        function drawQ() {
+            const it = S.items[S.i], n = S.items.length, ans = S.ans[S.i], last = S.i == n - 1, done = S.ans.filter(a => a !== null && a !== '').length;
+            let body;
+            if (S.id == 'warna') body = `<img class="plate" alt="Pola titik berwarna" src="${plate(S.i)}"><p style="text-align:center">Angka apa yang Anda lihat? (isi 0 bila tidak ada)</p><input class="num" id="ni" inputmode="numeric" pattern="[0-9]*" maxlength="2" value="${ans ?? ''}" aria-label="Jawaban angka">`;
+            else body = `<p style="white-space:pre-line;font-size:1.05rem">${it.q}</p>` + it.o.map((o, k) => `<button class="opt ${ans === k ? 's' : ''}" onclick="pick(${k})">${'ABCD'[k]}. ${o}</button>`).join('');
+            $('#v-test').innerHTML = `<div class="card"><div class="mu" style="display:flex;justify-content:space-between"><span>Soal ${S.i + 1} dari ${n}</span><span>Terjawab ${done}/${n}</span></div><div class="bar" style="margin:8px 0"><i style="width:${(S.i + 1) / n * 100}%"></i></div>
+<div class="dots">${S.items.map((_, k) => `<button class="${S.ans[k] !== null && S.ans[k] !== '' ? 'd' : ''} ${k == S.i ? 'c' : ''}" onclick="go(${k})" aria-label="Soal ${k + 1}">${k + 1}</button>`).join('')}</div>${body}
+<div class="row" style="margin-top:14px"><button class="btn g" onclick="go(${S.i - 1})" ${S.i ? '' : 'disabled'}>Sebelumnya</button>${last ? '' : `<button class="btn" onclick="go(${S.i + 1})">Soal Berikutnya</button>`}</div>
+<div class="row" style="margin-top:10px"><button class="btn" style="background:var(--ok)" onclick="finishQ()">Selesaikan Tes</button><button class="btn g" onclick="if(confirm('Mulai ulang dari awal?'))start('${S.id}')">Mulai Ulang</button></div></div>`;
+            const ni = $('#ni'); if (ni) ni.oninput = e => { e.target.value = e.target.value.replace(/\D/g, ''); S.ans[S.i] = e.target.value === '' ? null : e.target.value }
+        }
+        function pick(k) { S.ans[S.i] = k; drawQ() }
+        function go(k) { if (k < 0 || k >= S.items.length) return; drawQ0(k) }
+        function drawQ0(k) { S.i = k; drawQ() }
+
+        function ring(p) { const c = 2 * Math.PI * 52; return `<svg class="ring" width="150" height="150" viewBox="0 0 120 120" role="img" aria-label="Skor ${p} persen"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--ln)" stroke-width="10"/><circle cx="60" cy="60" r="52" fill="none" stroke="var(--tl)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${c * p / 100} ${c}" transform="rotate(-90 60 60)"/><text x="60" y="64" text-anchor="middle" font-size="26" font-weight="800" fill="var(--tx)">${p}</text><text x="60" y="80" text-anchor="middle" font-size="9" fill="var(--mu)">/ 100</text></svg>` }
+        function fmt(s) { s = Math.round(s); return Math.floor(s / 60) + ' mnt ' + s % 60 + ' dtk' }
+        function finishQ() {
+            if (S.done) return; const blank = S.ans.filter(a => a === null || a === '').length;
+            if (blank && !confirm(blank + ' soal belum dijawab. Tetap selesaikan?')) return;
+            S.done = true; const n = S.items.length; let ok = 0;
+            const rows = S.items.map((it, k) => {
+                const a = S.ans[k], e = a === null || a === ''; let right, ya, key;
+                if (S.id == 'warna') { key = it.n; ya = e ? '—' : a; right = !e && String(+a) === String(+it.n) } else { key = it.o[it.a]; ya = e ? '—' : it.o[a]; right = !e && a === it.a }
+                if (right) ok++; return `<div class="rv"><b>${k + 1}.</b> ${S.id == 'warna' ? 'Pola titik' : it.q.split('\n').pop()} <span class="pill ${right ? 'ok' : 'er'}">${right ? '✓ Benar' : e ? '✗ Kosong' : '✗ Salah'}</span><br>Jawaban Anda: ${ya} · Kunci: <b>${key}</b>${it.e ? `<br><span class="mu">${it.e}</span>` : ''}</div>`
+            }).join('');
+            const wrong = n - ok - blank, sc = Math.round(ok / n * 100);
+            $('#v-res').innerHTML = `<div class="card"><h2 style="margin:0">Hasil ${meta(S.id).t}</h2>${ring(sc)}<div class="stats"><div class="stat"><b>${n}</b>Total soal</div><div class="stat"><b class="ok">${ok}</b>Benar</div><div class="stat"><b class="er">${wrong}</b>Salah</div><div class="stat"><b>${blank}</b>Kosong</div></div><p class="mu" style="text-align:center">Skor = benar ÷ soal × 100 · Durasi ${fmt((Date.now() - S.t0) / 1000)}</p>${S.id == 'warna' ? '<p class="mu">Ini hanya latihan, bukan diagnosis medis. Untuk pemeriksaan sebenarnya, hubungi tenaga kesehatan.</p>' : ''}<div class="row"><button class="btn g" onclick="home()">Kembali ke Beranda</button><button class="btn" onclick="start('${S.id}')">Ulangi Tes</button></div></div><div class="card" style="margin-top:14px"><h3 style="margin:0 0 4px">Kunci & Pembahasan</h3>${rows}</div>`; view('res')
+        }
+
+        /* Pauli & Kraepelin */
+        function newCol() { P.col = Array.from({ length: 26 }, () => Math.random() * 10 | 0); P.i = 0 }
+        function startP(id) {
+            const d = +$('#dur').value, kr = id == 'kraep';
+            P = { id, kr, secLen: kr ? d : 30, total: kr ? d * 4 : d, res: [], seg: 0, run: true, t0: Date.now() }; newCol(); view('test'); drawP();
+            P.tm = setInterval(tick, 200)
+        }
+        function stopP() { if (P) { P.run = false; clearInterval(P.tm) } }
+        function tick() {
+            if (!P || !P.run) return; const el = (Date.now() - P.t0) / 1000;
+            if (el >= P.total) return finishP();
+            if (P.kr) { const s = Math.floor(el / P.secLen); if (s != P.seg) { P.seg = s; newCol(); drawP() } }
+            const c = $('#clk'); if (c) c.textContent = Math.ceil(P.total - el) + ' dtk'
+        }
+        function drawP() {
+            const c = P.col, rows = c.map((d, j) => { let h = `<div class="${j == P.i ? 'a' : ''}">${d}</div>`; if (j < c.length - 1) h += `<div class="s">${j < P.i ? P.col.ans[j] : (j == P.i ? '?' : '·')}</div>`; return h }).join('');
+            if (!P.col.ans) P.col.ans = [];
+            $('#v-test').innerHTML = `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b>${meta(P.id).t}${P.kr ? ' · Bagian ' + (P.seg + 1) + '/4' : ''}</b><span class="clock" id="clk">${P.total} dtk</span></div><p class="mu" style="margin:4px 0 8px">Ketik angka satuan dari ${'sorotan'} + angka di bawahnya. Dikerjakan: ${P.res.length}</p><div class="col" id="col">${rows}</div><div class="pad">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map(n => `<button onclick="ansP(${n})">${n}</button>`).join('')}</div><div class="row" style="margin-top:12px"><button class="btn" style="background:var(--ok)" onclick="finishP()">Selesaikan Tes</button><button class="btn g" onclick="stopP();home()">Batal</button></div></div>`;
+            const a = document.querySelector('.col .a'); if (a) a.scrollIntoView({ block: 'center' })
+        }
+        function ansP(v) {
+            if (!P || !P.run) return; const c = P.col; if (!c.ans) c.ans = [];
+            const ok = (c[P.i] + c[P.i + 1]) % 10 === v; c.ans[P.i] = v; P.res.push({ ok, seg: Math.floor((Date.now() - P.t0) / 1000 / P.secLen) }); P.i++;
+            if (P.i >= c.length - 1) newCol(); drawP()
+        }
+        document.addEventListener('keydown', e => { if (P && P.run && /^\d$/.test(e.key)) ansP(+e.key) });
+        function finishP() {
+            if (!P || !P.run) return; stopP(); const el = Math.min((Date.now() - P.t0) / 1000, P.total), r = P.res, n = r.length, ok = r.filter(x => x.ok).length, wr = n - ok;
+            const segs = Math.max(1, Math.ceil(P.total / P.secLen)), cnt = Array.from({ length: segs }, (_, s) => ({ n: 0, ok: 0 }));
+            r.forEach(x => { const s = Math.min(x.seg, segs - 1); cnt[s].n++; if (x.ok) cnt[s].ok++ });
+            const mx = Math.max(1, ...cnt.map(s => s.n)), acc = n ? Math.round(ok / n * 100) : 0, spd = el > 0 ? (n / el * 60).toFixed(1) : '0';
+            $('#v-res').innerHTML = `<div class="card"><h2 style="margin:0">Hasil ${meta(P.id).t}</h2>${ring(acc)}<p class="mu" style="text-align:center;margin:0">Ketepatan (%)</p><div class="stats"><div class="stat"><b>${n}</b>Dikerjakan</div><div class="stat"><b>${spd}</b>Operasi/menit</div><div class="stat"><b class="ok">${ok}</b>Benar</div><div class="stat"><b class="er">${wr}</b>Salah</div></div><p class="mu">Durasi ${fmt(el)}. Soal yang tidak sempat dikerjakan tidak dihitung salah.</p><h3 style="margin:18px 0 4px">Performa per bagian ${P.kr ? '' : '(tiap 30 dtk)'}</h3><div class="sg" style="margin-top:26px">${cnt.map(s => `<div style="height:${Math.max(3, s.n / mx * 100)}%"><span>${s.n}</span></div>`).join('')}</div><div class="sg" style="height:auto;margin:0">${cnt.map((s, k) => `<div style="background:none;text-align:center;font-size:.78rem;min-height:0">B${k + 1}<br>${s.n ? Math.round(s.ok / s.n * 100) : 0}%</div>`).join('')}</div><p class="mu" style="font-size:.85rem">Batang = jumlah operasi; persen = ketepatan bagian tersebut.</p><div class="row"><button class="btn g" onclick="home()">Kembali ke Beranda</button><button class="btn" onclick="intro('${P.id}')">Ulangi Tes</button></div></div>`; view('res')
+        }
+    </script>
+</body>
+
+</html>
